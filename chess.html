@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Chess</title>
+
+	<style>
+		
+	.rim {
+    width:640px;
+    height:640px;
+    border:1px solid black;
+    background-color:white;
+    user-select:none;
+}
+
+    .black {
+    float:left;
+    width:80px;
+    height:80px;
+    background-color:#2E8B57;
+    user-select:none;
+    box-shadow:0 0 20px rgba(0,0,0,0.3) inset,0 1px rgba(212,152,125,0.2) inset,0 0px 0px rgba(0,0,0,0.3);
+}
+
+    .white {
+    float:left;
+    width:80px;
+    height:80px;
+    background-color:#F5F5DC;
+    user-select:none;
+    box-shadow:0 0 20px rgba(0,0,0,0.3) inset,0 1px rgba(212,152,125,0.2) inset,0 0px 0px rgba(0,0,0,0.3);
+}
+
+    .filled {
+    width:80px;
+    height:78px;
+    display:flex;
+    justify-content:center;
+    user-select:none;
+    align-items:flex-end;
+}	
+
+    .sidebox{
+    width:320px;
+    height:640px;
+    background-color:#F5F5DC;
+    border:1px solid black;
+    margin-left:800px;
+    position:absolute;
+    opacity:75%;
+    user-select:none;
+    box-shadow:0 0 20px rgba(0,0,0,0.3) inset,0 1px rgba(212,152,125,0.2) inset,0 0px 0px rgba(0,0,0,0.3)
+}
+
+    .sidebox2{
+    width:320px;
+    height:640px;
+    user-select:none;
+}
+    
+    body {
+        overflow:hidden;
+        margin:25px;
+        background-image: url('chessbackground.jpg');
+        background-position: center;
+        background-size: cover;
+        background-attachment:fixed;
+}
+
+	</style>
+
+</head>
+
+<body>
+
+<div class="rim">
+
+<div class="white" id="a8" ondragover="colorChangeA8(event)" ondragleave="colorRevertA8(event)" ondrop="colorRevertA8(event)"> 
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)">
+<img src="blackrook_736.png" ondragstart="dragThis(event)" draggable="true" height="57px" style="cursor:pointer" id="blackrookA8">
+</div></div>
+
+<div class="black" id="b8" ondragover="colorChangeB8(event)" ondragleave="colorRevertB8(event)" ondrop="colorRevertB8(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)">    
+<img src="blackknight_832.png" ondragstart="dragThis(event)" draggable="true" height="60px" style="cursor:pointer" id="blackknightB8">
+</div></div>
+
+<div class="white" id="c8" ondragover="colorChangeC8(event)" ondragleave="colorRevertC8(event)" ondrop="colorRevertC8(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)">      
+<img src="blackbishop_832.png" ondragstart="dragThis(event)" draggable="true" height="64px" style="cursor:pointer" id="blackbishopC8">
+</div></div>
+
+<div class="black" id="d8" ondragover="colorChangeD8(event)" ondragleave="colorRevertD8(event)" ondrop="colorRevertD8(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)">      
+<img src="blackqueen_908.png" ondragstart="dragThis(event)" draggable="true" height="68px" style="cursor:pointer" id="blackqueenD8">
+</div></div>
+
+<div class="white" id="e8" ondragover="colorChangeE8(event)" ondragleave="colorRevertE8(event)" ondrop="colorRevertE8(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)">      
+<img src="blackking_1016.png" ondragstart="dragThis(event)" draggable="true" height="77px" style="cursor:pointer" id="blackkingE8">
+</div></div>
+
+<div class="black" id="f8" ondragover="colorChangeF8(event)" ondragleave="colorRevertF8(event)" ondrop="colorRevertF8(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)">      
+<img src="blackbishop_832.png" ondragstart="dragThis(event)" draggable="true" height="64px" style="cursor:pointer" id="blackbishopF8">
+</div></div>
+
+<div class="white" id="g8" ondragover="colorChangeG8(event)" ondragleave="colorRevertG8(event)" ondrop="colorRevertG8(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)">      
+<img src="blackknight_832.png" ondragstart="dragThis(event)" draggable="true" height="60px" style="cursor:pointer" id="blackknightG8">
+</div></div>
+
+<div class="black" id="h8" ondragover="colorChangeH8(event)" ondragleave="colorRevertH8(event)" ondrop="colorRevertH8(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)">     
+<img src="blackrook_736.png" ondragstart="dragThis(event)" draggable="true" height="57px" style="cursor:pointer" id="blackrookH8">
+</div></div>
+
+
+
+<div class="black" id="a7" ondragover="colorChangeA7(event)" ondragleave="colorRevertA7(event)" ondrop="colorRevertA7(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)" id="a7small">      
+<img src="blackpawn_738.png" ondragstart="dragThis(event)" draggable="true" height="50px" style="cursor:pointer" id="blackpawnA7">
+</div></div>
+
+<div class="white" id="b7" ondragover="colorChangeB7(event)" ondragleave="colorRevertB7(event)" ondrop="colorRevertB7(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)">  
+<img src="blackpawn_738.png" ondragstart="dragThis(event)" draggable="true" height="50px" style="cursor:pointer" id="blackpawnB7">
+</div></div>
+
+<div class="black" id="c7" ondragover="colorChangeC7(event)" ondragleave="colorRevertC7(event)" ondrop="colorRevertC7(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)">      
+<img src="blackpawn_738.png" ondragstart="dragThis(event)" draggable="true" height="50px" style="cursor:pointer" id="blackpawnC7">
+</div></div>
+
+<div class="white" id="d7" ondragover="colorChangeD7(event)" ondragleave="colorRevertD7(event)" ondrop="colorRevertD7(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)">      
+<img src="blackpawn_738.png" ondragstart="dragThis(event)" draggable="true" height="50px" style="cursor:pointer" id="blackpawnD7">
+</div></div>
+
+<div class="black" id="e7" ondragover="colorChangeE7(event)" ondragleave="colorRevertE7(event)" ondrop="colorRevertE7(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)">      
+<img src="blackpawn_738.png" ondragstart="dragThis(event)" draggable="true" height="50px" style="cursor:pointer" id="blackpawnE7">
+</div></div>
+
+<div class="white" id="f7" ondragover="colorChangeF7(event)" ondragleave="colorRevertF7(event)" ondrop="colorRevertF7(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)">      
+<img src="blackpawn_738.png" ondragstart="dragThis(event)" draggable="true" height="50px" style="cursor:pointer" id="blackpawnF7">
+</div></div>
+
+<div class="black" id="g7" ondragover="colorChangeG7(event)" ondragleave="colorRevertG7(event)" ondrop="colorRevertG7(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)">      
+<img src="blackpawn_738.png" ondragstart="dragThis(event)" draggable="true" height="50px" style="cursor:pointer" id="blackpawnG7">
+</div></div>
+
+<div class="white" id="h7" ondragover="colorChangeH7(event)" ondragleave="colorRevertH7(event)" ondrop="colorRevertH7(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)">      
+<img src="blackpawn_738.png" ondragstart="dragThis(event)" draggable="true" height="50px" style="cursor:pointer" id="blackpawnH7">
+</div></div>
+
+
+
+<div class="white" id="a6" ondragover="colorChangeA6(event)" ondragleave="colorRevertA6(event)" ondrop="colorRevertA6(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)"></div></div>
+
+<div class="black" id="b6" ondragover="colorChangeB6(event)" ondragleave="colorRevertB6(event)" ondrop="colorRevertB6(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)"></div></div>
+
+<div class="white" id="c6" ondragover="colorChangeC6(event)" ondragleave="colorRevertC6(event)" ondrop="colorRevertC6(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)"></div></div>
+
+<div class="black" id="d6" ondragover="colorChangeD6(event)" ondragleave="colorRevertD6(event)" ondrop="colorRevertD6(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)"></div></div>
+
+<div class="white" id="e6" ondragover="colorChangeE6(event)" ondragleave="colorRevertE6(event)" ondrop="colorRevertE6(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)"></div></div>
+
+<div class="black" id="f6" ondragover="colorChangeF6(event)" ondragleave="colorRevertF6(event)" ondrop="colorRevertF6(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)"></div></div>
+
+<div class="white" id="g6" ondragover="colorChangeG6(event)" ondragleave="colorRevertG6(event)" ondrop="colorRevertG6(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)"></div></div>
+
+<div class="black" id="h6" ondragover="colorChangeH6(event)" ondragleave="colorRevertH6(event)" ondrop="colorRevertH6(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)"></div></div>
+
+
+
+<div class="black" id="a5" ondragover="colorChangeA5(event)" ondragleave="colorRevertA5(event)" ondrop="colorRevertA5(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)"></div></div>
+
+<div class="white" id="b5" ondragover="colorChangeB5(event)" ondragleave="colorRevertB5(event)" ondrop="colorRevertB5(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)"></div></div>
+
+<div class="black" id="c5" ondragover="colorChangeC5(event)" ondragleave="colorRevertC5(event)" ondrop="colorRevertC5(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)"></div></div>
+
+<div class="white" id="d5" ondragover="colorChangeD5(event)" ondragleave="colorRevertD5(event)" ondrop="colorRevertD5(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)"></div></div>
+
+<div class="black" id="e5" ondragover="colorChangeE5(event)" ondragleave="colorRevertE5(event)" ondrop="colorRevertE5(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)"></div></div>
+
+<div class="white" id="f5" ondragover="colorChangeF5(event)" ondragleave="colorRevertF5(event)" ondrop="colorRevertF5(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)"></div></div>
+
+<div class="black" id="g5" ondragover="colorChangeG5(event)" ondragleave="colorRevertG5(event)" ondrop="colorRevertG5(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)"></div></div>
+
+<div class="white" id="h5" ondragover="colorChangeH5(event)" ondragleave="colorRevertH5(event)" ondrop="colorRevertH5(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)"></div></div>
+
+
+
+<div class="white" id="a4" ondragover="colorChangeA4(event)" ondragleave="colorRevertA4(event)" ondrop="colorRevertA4(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)"></div></div>
+
+<div class="black" id="b4" ondragover="colorChangeB4(event)" ondragleave="colorRevertB4(event)" ondrop="colorRevertB4(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)"></div></div>
+
+<div class="white" id="c4" ondragover="colorChangeC4(event)" ondragleave="colorRevertC4(event)" ondrop="colorRevertC4(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)"></div></div>
+
+<div class="black" id="d4" ondragover="colorChangeD4(event)" ondragleave="colorRevertD4(event)" ondrop="colorRevertD4(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)"></div></div>
+
+<div class="white" id="e4" ondragover="colorChangeE4(event)" ondragleave="colorRevertE4(event)" ondrop="colorRevertE4(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)"></div></div>
+
+<div class="black" id="f4" ondragover="colorChangeF4(event)" ondragleave="colorRevertF4(event)" ondrop="colorRevertF4(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)"></div></div>
+
+<div class="white" id="g4" ondragover="colorChangeG4(event)" ondragleave="colorRevertG4(event)" ondrop="colorRevertG4(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)"></div></div>
+
+<div class="black" id="h4" ondragover="colorChangeH4(event)" ondragleave="colorRevertH4(event)" ondrop="colorRevertH4(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)"></div></div>
+
+
+
+<div class="black" id="a3" ondragover="colorChangeA3(event)" ondragleave="colorRevertA3(event)" ondrop="colorRevertA3(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)"></div></div>
+
+<div class="white" id="b3" ondragover="colorChangeB3(event)" ondragleave="colorRevertB3(event)" ondrop="colorRevertB3(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)"></div></div>
+
+<div class="black" id="c3" ondragover="colorChangeC3(event)" ondragleave="colorRevertC3(event)" ondrop="colorRevertC3(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)"></div></div>
+
+<div class="white" id="d3" ondragover="colorChangeD3(event)" ondragleave="colorRevertD3(event)" ondrop="colorRevertD3(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)"></div></div>
+
+<div class="black" id="e3" ondragover="colorChangeE3(event)" ondragleave="colorRevertE3(event)" ondrop="colorRevertE3(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)"></div></div>
+
+<div class="white" id="f3" ondragover="colorChangeF3(event)" ondragleave="colorRevertF3(event)" ondrop="colorRevertF3(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)"></div></div>
+
+<div class="black" id="g3" ondragover="colorChangeG3(event)" ondragleave="colorRevertG3(event)" ondrop="colorRevertG3(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)"></div></div>
+
+<div class="white" id="h3" ondragover="colorChangeH3(event)" ondragleave="colorRevertH3(event)" ondrop="colorRevertH3(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)"></div></div>
+
+
+
+<div class="white" id="a2" ondragover="colorChangeA2(event)" ondragleave="colorRevertA2(event)" ondrop="colorRevertA2(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)">      
+<img src="whitepawn_744.png" ondragstart="dragThis(event)" draggable="true" height="50px" style="cursor:pointer" id="whitepawnA2">  
+</div></div>
+
+<div class="black" id="b2" ondragover="colorChangeB2(event)" ondragleave="colorRevertB2(event)" ondrop="colorRevertB2(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)">      
+<img src="whitepawn_744.png" ondragstart="dragThis(event)" draggable="true" height="50px" style="cursor:pointer" id="whitepawnB2">  
+</div></div>
+
+<div class="white" id="c2" ondragover="colorChangeC2(event)" ondragleave="colorRevertC2(event)" ondrop="colorRevertC2(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)">      
+<img src="whitepawn_744.png" ondragstart="dragThis(event)" draggable="true" height="50px" style="cursor:pointer" id="whitepawnC2">  
+</div></div>
+
+<div class="black" id="d2" ondragover="colorChangeD2(event)" ondragleave="colorRevertD2(event)" ondrop="colorRevertD2(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)">      
+<img src="whitepawn_744.png" ondragstart="dragThis(event)" draggable="true" height="50px" style="cursor:pointer" id="whitepawnD2">  
+</div></div>
+
+<div class="white" id="e2" ondragover="colorChangeE2(event)" ondragleave="colorRevertE2(event)" ondrop="colorRevertE2(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)">      
+<img src="whitepawn_744.png" ondragstart="dragThis(event)" draggable="true" height="50px" style="cursor:pointer" id="whitepawnE2">  
+</div></div>
+
+<div class="black" id="f2" ondragover="colorChangeF2(event)" ondragleave="colorRevertF2(event)" ondrop="colorRevertF2(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)">      
+<img src="whitepawn_744.png" ondragstart="dragThis(event)" draggable="true" height="50px" style="cursor:pointer" id="whitepawnF2">  
+</div></div>
+
+<div class="white" id="g2" ondragover="colorChangeG2(event)" ondragleave="colorRevertG2(event)" ondrop="colorRevertG2(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)">      
+<img src="whitepawn_744.png" ondragstart="dragThis(event)" draggable="true" height="50px" style="cursor:pointer" id="whitepawnG2">  
+</div></div>
+
+<div class="black" id="h2" ondragover="colorChangeH2(event)" ondragleave="colorRevertH2(event)" ondrop="colorRevertH2(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)">      
+<img src="whitepawn_744.png" ondragstart="dragThis(event)" draggable="true" height="50px" style="cursor:pointer" id="whitepawnH2">  
+</div></div>
+
+
+
+<div class="black" id="a1" ondragover="colorChangeA1(event)" ondragleave="colorRevertA1(event)" ondrop="colorRevertA1(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)">
+<img src="whiterook_740.png" ondragstart="dragThis(event)" draggable="true" height="57px" style="cursor:pointer" id="whiterookA1">
+</div></div>
+
+<div class="white" id="b1" ondragover="colorChangeB1(event)" ondragleave="colorRevertB1(event)" ondrop="colorRevertB1(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)">    
+<img src="whiteknight_824.png" ondragstart="dragThis(event)" draggable="true" height="60px" style="cursor:pointer" id="whiteknightB1">
+</div></div>
+
+<div class="black" id="c1" ondragover="colorChangeC1(event)" ondragleave="colorRevertC1(event)" ondrop="colorRevertC1(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)">      
+<img src="whitebishop_830.png" ondragstart="dragThis(event)" draggable="true" height="64px" style="cursor:pointer" id="whitebishopC1">
+</div></div>
+
+<div class="white" id="d1" ondragover="colorChangeD1(event)" ondragleave="colorRevertD1(event)" ondrop="colorRevertD1(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)">      
+<img src="whitequeen_910.png" ondragstart="dragThis(event)" draggable="true" height="68px" style="cursor:pointer" id="whitequeenD1">
+</div></div>
+
+<div class="black" id="e1" ondragover="colorChangeE1(event)" ondragleave="colorRevertE1(event)" ondrop="colorRevertE1(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)">      
+<img src="whiteking_1016.png" ondragstart="dragThis(event)" draggable="true" height="77px" style="cursor:pointer" id="whitekingE1">
+</div></div>
+
+<div class="white" id="f1" ondragover="colorChangeF1(event)" ondragleave="colorRevertF1(event)" ondrop="colorRevertF1(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)">      
+<img src="whitebishop_830.png" ondragstart="dragThis(event)" draggable="true" height="64px" style="cursor:pointer" id="whitebishopF1">
+</div></div>
+
+<div class="black" id="g1" ondragover="colorChangeG1(event)" ondragleave="colorRevertG1(event)" ondrop="colorRevertG1(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)">    
+<img src="whiteknight_824.png" ondragstart="dragThis(event)" draggable="true" height="60px" style="cursor:pointer" id="whiteknightG1">
+</div></div>
+
+<div class="white" id="h1" ondragover="colorChangeH1(event)" ondragleave="colorRevertH1(event)" ondrop="colorRevertH1(event)">
+<div class="filled" ondrop="dropThis(event)" ondragover="allowDropThis(event)">
+<img src="whiterook_740.png" ondragstart="dragThis(event)" draggable="true" height="57px" style="cursor:pointer" id="whiterookH1">
+</div></div>
+
+<div class="sidebox" id="sidebox" ondragover="colorChangeBox(event)" ondragleave="colorRevertBox(event)" ondrop="colorRevertBox(event)">
+<div class="sidebox2" ondrop="dropThis(event)" ondragover="allowDropThis(event)"></div></div>
+
+<audio src="chessdrop.mp3" id="chessdrop"></audio>
+
+</body>
+
+<body>
+
+<script type="text/javascript">
+
+var chessDrop = document.getElementById("chessdrop");
+
+var a8 = document.getElementById("a8");
+var b8 = document.getElementById("b8");
+var c8 = document.getElementById("c8");
+var d8 = document.getElementById("d8");
+var e8 = document.getElementById("e8");
+var f8 = document.getElementById("f8");
+var g8 = document.getElementById("g8");
+var h8 = document.getElementById("h8");
+var a7 = document.getElementById("a7");
+var b7 = document.getElementById("b7");
+var c7 = document.getElementById("c7");
+var d7 = document.getElementById("d7");
+var e7 = document.getElementById("e7");
+var f7 = document.getElementById("f7");
+var g7 = document.getElementById("g7");
+var h7 = document.getElementById("h7");
+var a6 = document.getElementById("a6");
+var b6 = document.getElementById("b6");
+var c6 = document.getElementById("c6");
+var d6 = document.getElementById("d6");
+var e6 = document.getElementById("e6");
+var f6 = document.getElementById("f6");
+var g6 = document.getElementById("g6");
+var h6 = document.getElementById("h6");
+var a5 = document.getElementById("a5");
+var b5 = document.getElementById("b5");
+var c5 = document.getElementById("c5");
+var d5 = document.getElementById("d5");
+var e5 = document.getElementById("e5");
+var f5 = document.getElementById("f5");
+var g5 = document.getElementById("g5");
+var h5 = document.getElementById("h5");
+var a4 = document.getElementById("a4");
+var b4 = document.getElementById("b4");
+var c4 = document.getElementById("c4");
+var d4 = document.getElementById("d4");
+var e4 = document.getElementById("e4");
+var f4 = document.getElementById("f4");
+var g4 = document.getElementById("g4");
+var h4 = document.getElementById("h4");
+var a3 = document.getElementById("a3");
+var b3 = document.getElementById("b3");
+var c3 = document.getElementById("c3");
+var d3 = document.getElementById("d3");
+var e3 = document.getElementById("e3");
+var f3 = document.getElementById("f3");
+var g3 = document.getElementById("g3");
+var h3 = document.getElementById("h3");
+var a2 = document.getElementById("a2");
+var b2 = document.getElementById("b2");
+var c2 = document.getElementById("c2");
+var d2 = document.getElementById("d2");
+var e2 = document.getElementById("e2");
+var f2 = document.getElementById("f2");
+var g2 = document.getElementById("g2");
+var h2 = document.getElementById("h2");
+var a1 = document.getElementById("a1");
+var b1 = document.getElementById("b1");
+var c1 = document.getElementById("c1");
+var d1 = document.getElementById("d1");
+var e1 = document.getElementById("e1");
+var f1 = document.getElementById("f1");
+var g1 = document.getElementById("g1");
+var h1 = document.getElementById("h1");
+var sidebox = document.getElementById("sidebox");
+var a7small = document.getElementById("a7small");
+
+function allowDropThis(i) {
+    i.preventDefault();
+}
+
+function dragThis(i) {
+    i.dataTransfer.setData("piece", i.target.id);
+    cursor.style = "move";
+}
+
+function dropThis(i) {
+    i.preventDefault();
+    var data = i.dataTransfer.getData("piece");
+
+    if ( i.target.nodeName != "IMG" ) {
+
+        i.target.appendChild(document.getElementById(data));
+
+        var targetChildren = i.target.childElementCount;
+        if (targetChildren > 1) {
+            var existingPiece = i.target.children[0];
+            sidebox.insertAdjacentElement("afterbegin", existingPiece);
+        }
+
+    } else {
+
+        var targetParent = i.target.parentElement;
+        sidebox.insertAdjacentElement("afterbegin", i.target)
+        targetParent.appendChild(document.getElementById(data));
+    }
+
+    chessDrop.play();
+    chessDrop.currentTime = 0
+}
+
+//Change cursor to pointer when dragging over an image
+
+function colorChangeBox(e) {
+    sidebox.style.backgroundColor = "deepskyblue"
+    sidebox.style.transition = "0.5s"}
+function colorRevertBox(e) {
+    sidebox.style.backgroundColor = "white"
+    sidebox.style.transition = "0.5s"}
+
+function colorChangeA8(e) {
+    a8.style.backgroundColor = "deepskyblue"
+    a8.style.transition = "0s"}
+function colorRevertA8(e) {
+    a8.style.backgroundColor = "#F5F5DC"
+    a8.style.transition = "0s"}
+function colorRevertB8(e) {
+    b8.style.backgroundColor = "#2E8B57"
+    b8.style.transition = "0s"}
+function colorChangeB8(e) {
+    b8.style.backgroundColor = "deepskyblue"
+    b8.style.transition = "0.25"}
+function colorChangeC8(e) {
+    c8.style.backgroundColor = "deepskyblue"
+    c8.style.transition = "0s"}
+function colorRevertC8(e) {
+    c8.style.backgroundColor = "#F5F5DC"
+    c8.style.transition = "0s"}
+function colorRevertD8(e) {
+    d8.style.backgroundColor = "#2E8B57"
+    d8.style.transition = "0s"}
+function colorChangeD8(e) {
+    d8.style.backgroundColor = "deepskyblue"
+    d8.style.transition = "0s"}
+function colorChangeE8(e) {
+    e8.style.backgroundColor = "deepskyblue"
+    e8.style.transition = "0s"}
+function colorRevertE8(e) {
+    e8.style.backgroundColor = "#F5F5DC"
+    e8.style.transition = "0s"}
+function colorRevertF8(e) {
+    f8.style.backgroundColor = "#2E8B57"
+    f8.style.transition = "0s"}
+function colorChangeF8(e) {
+    f8.style.backgroundColor = "deepskyblue"
+    f8.style.transition = "0s"}
+function colorChangeG8(e) {
+    g8.style.backgroundColor = "deepskyblue"
+    g8.style.transition = "0s"}
+function colorRevertG8(e) {
+    g8.style.backgroundColor = "#F5F5DC"
+    g8.style.transition = "0s"}
+function colorRevertH8(e) {
+    h8.style.backgroundColor = "#2E8B57"
+    h8.style.transition = "0s"}
+function colorChangeH8(e) {
+    h8.style.backgroundColor = "deepskyblue"
+    h8.style.transition = "0s"}
+
+function colorRevertA7(e) {
+    a7.style.backgroundColor = "#2E8B57"
+    a7.style.transition = "0s"}
+function colorChangeA7(e) {
+    a7.style.backgroundColor = "deepskyblue"
+    a7.style.transition = "0.25"}
+function colorChangeB7(e) {
+    b7.style.backgroundColor = "deepskyblue"
+    b7.style.transition = "0s"}
+function colorRevertB7(e) {
+    b7.style.backgroundColor = "#F5F5DC"
+    b7.style.transition = "0s"}
+function colorRevertC7(e) {
+    c7.style.backgroundColor = "#2E8B57"
+    c7.style.transition = "0s"}
+function colorChangeC7(e) {
+    c7.style.backgroundColor = "deepskyblue"
+    c7.style.transition = "0.25"}
+function colorChangeD7(e) {
+    d7.style.backgroundColor = "deepskyblue"
+    d7.style.transition = "0s"}
+function colorRevertD7(e) {
+    d7.style.backgroundColor = "#F5F5DC"
+    d7.style.transition = "0s"}
+function colorRevertE7(e) {
+    e7.style.backgroundColor = "#2E8B57"
+    e7.style.transition = "0s"}
+function colorChangeE7(e) {
+    e7.style.backgroundColor = "deepskyblue"
+    e7.style.transition = "0.25"}
+function colorChangeF7(e) {
+    f7.style.backgroundColor = "deepskyblue"
+    f7.style.transition = "0s"}
+function colorRevertF7(e) {
+    f7.style.backgroundColor = "#F5F5DC"
+    f7.style.transition = "0s"}    
+function colorRevertG7(e) {
+    g7.style.backgroundColor = "#2E8B57"
+    g7.style.transition = "0s"}
+function colorChangeG7(e) {
+    g7.style.backgroundColor = "deepskyblue"
+    g7.style.transition = "0.25"}
+function colorChangeH7(e) {
+    h7.style.backgroundColor = "deepskyblue"
+    h7.style.transition = "0s"}
+function colorRevertH7(e) {
+    h7.style.backgroundColor = "#F5F5DC"
+    h7.style.transition = "0s"}
+
+function colorChangeA6(e) {
+    a6.style.backgroundColor = "deepskyblue"
+    a6.style.transition = "0s"}
+function colorRevertA6(e) {
+    a6.style.backgroundColor = "#F5F5DC"
+    a6.style.transition = "0s"}
+function colorRevertB6(e) {
+    b6.style.backgroundColor = "#2E8B57"
+    b6.style.transition = "0s"}
+function colorChangeB6(e) {
+    b6.style.backgroundColor = "deepskyblue"
+    b6.style.transition = "0.25"}
+function colorChangeC6(e) {
+    c6.style.backgroundColor = "deepskyblue"
+    c6.style.transition = "0s"}
+function colorRevertC6(e) {
+    c6.style.backgroundColor = "#F5F5DC"
+    c6.style.transition = "0s"}
+function colorRevertD6(e) {
+    d6.style.backgroundColor = "#2E8B57"
+    d6.style.transition = "0s"}
+function colorChangeD6(e) {
+    d6.style.backgroundColor = "deepskyblue"
+    d6.style.transition = "0s"}
+function colorChangeE6(e) {
+    e6.style.backgroundColor = "deepskyblue"
+    e6.style.transition = "0s"}
+function colorRevertE6(e) {
+    e6.style.backgroundColor = "#F5F5DC"
+    e6.style.transition = "0s"}
+function colorRevertF6(e) {
+    f6.style.backgroundColor = "#2E8B57"
+    f6.style.transition = "0s"}
+function colorChangeF6(e) {
+    f6.style.backgroundColor = "deepskyblue"
+    f6.style.transition = "0s"}
+function colorChangeG6(e) {
+    g6.style.backgroundColor = "deepskyblue"
+    g6.style.transition = "0s"}
+function colorRevertG6(e) {
+    g6.style.backgroundColor = "#F5F5DC"
+    g6.style.transition = "0s"}
+function colorRevertH6(e) {
+    h6.style.backgroundColor = "#2E8B57"
+    h6.style.transition = "0s"}
+function colorChangeH6(e) {
+    h6.style.backgroundColor = "deepskyblue"
+    h6.style.transition = "0s"}
+
+function colorRevertA5(e) {
+    a5.style.backgroundColor = "#2E8B57"
+    a5.style.transition = "0s"}
+function colorChangeA5(e) {
+    a5.style.backgroundColor = "deepskyblue"
+    a5.style.transition = "0.25"}
+function colorChangeB5(e) {
+    b5.style.backgroundColor = "deepskyblue"
+    b5.style.transition = "0s"}
+function colorRevertB5(e) {
+    b5.style.backgroundColor = "#F5F5DC"
+    b5.style.transition = "0s"}
+function colorRevertC5(e) {
+    c5.style.backgroundColor = "#2E8B57"
+    c5.style.transition = "0s"}
+function colorChangeC5(e) {
+    c5.style.backgroundColor = "deepskyblue"
+    c5.style.transition = "0.25"}
+function colorChangeD5(e) {
+    d5.style.backgroundColor = "deepskyblue"
+    d5.style.transition = "0s"}
+function colorRevertD5(e) {
+    d5.style.backgroundColor = "#F5F5DC"
+    d5.style.transition = "0s"}
+function colorRevertE5(e) {
+    e5.style.backgroundColor = "#2E8B57"
+    e5.style.transition = "0s"}
+function colorChangeE5(e) {
+    e5.style.backgroundColor = "deepskyblue"
+    e5.style.transition = "0.25"}
+function colorChangeF5(e) {
+    f5.style.backgroundColor = "deepskyblue"
+    f5.style.transition = "0s"}
+function colorRevertF5(e) {
+    f5.style.backgroundColor = "#F5F5DC"
+    f5.style.transition = "0s"}    
+function colorRevertG5(e) {
+    g5.style.backgroundColor = "#2E8B57"
+    g5.style.transition = "0s"}
+function colorChangeG5(e) {
+    g5.style.backgroundColor = "deepskyblue"
+    g5.style.transition = "0.25"}
+function colorChangeH5(e) {
+    h5.style.backgroundColor = "deepskyblue"
+    h5.style.transition = "0s"}
+function colorRevertH5(e) {
+    h5.style.backgroundColor = "#F5F5DC"
+    h5.style.transition = "0s"}
+
+function colorChangeA4(e) {
+    a4.style.backgroundColor = "deepskyblue"
+    a4.style.transition = "0s"}
+function colorRevertA4(e) {
+    a4.style.backgroundColor = "#F5F5DC"
+    a4.style.transition = "0s"}
+function colorRevertB4(e) {
+    b4.style.backgroundColor = "#2E8B57"
+    b4.style.transition = "0s"}
+function colorChangeB4(e) {
+    b4.style.backgroundColor = "deepskyblue"
+    b4.style.transition = "0.25"}
+function colorChangeC4(e) {
+    c4.style.backgroundColor = "deepskyblue"
+    c4.style.transition = "0s"}
+function colorRevertC4(e) {
+    c4.style.backgroundColor = "#F5F5DC"
+    c4.style.transition = "0s"}
+function colorRevertD4(e) {
+    d4.style.backgroundColor = "#2E8B57"
+    d4.style.transition = "0s"}
+function colorChangeD4(e) {
+    d4.style.backgroundColor = "deepskyblue"
+    d4.style.transition = "0s"}
+function colorChangeE4(e) {
+    e4.style.backgroundColor = "deepskyblue"
+    e4.style.transition = "0s"}
+function colorRevertE4(e) {
+    e4.style.backgroundColor = "#F5F5DC"
+    e4.style.transition = "0s"}
+function colorRevertF4(e) {
+    f4.style.backgroundColor = "#2E8B57"
+    f4.style.transition = "0s"}
+function colorChangeF4(e) {
+    f4.style.backgroundColor = "deepskyblue"
+    f4.style.transition = "0s"}
+function colorChangeG4(e) {
+    g4.style.backgroundColor = "deepskyblue"
+    g4.style.transition = "0s"}
+function colorRevertG4(e) {
+    g4.style.backgroundColor = "#F5F5DC"
+    g4.style.transition = "0s"}
+function colorRevertH4(e) {
+    h4.style.backgroundColor = "#2E8B57"
+    h4.style.transition = "0s"}
+function colorChangeH4(e) {
+    h4.style.backgroundColor = "deepskyblue"
+    h4.style.transition = "0s"}
+
+function colorRevertA3(e) {
+    a3.style.backgroundColor = "#2E8B57"
+    a3.style.transition = "0s"}
+function colorChangeA3(e) {
+    a3.style.backgroundColor = "deepskyblue"
+    a3.style.transition = "0.25"}
+function colorChangeB3(e) {
+    b3.style.backgroundColor = "deepskyblue"
+    b3.style.transition = "0s"}
+function colorRevertB3(e) {
+    b3.style.backgroundColor = "#F5F5DC"
+    b3.style.transition = "0s"}
+function colorRevertC3(e) {
+    c3.style.backgroundColor = "#2E8B57"
+    c3.style.transition = "0s"}
+function colorChangeC3(e) {
+    c3.style.backgroundColor = "deepskyblue"
+    c3.style.transition = "0.25"}
+function colorChangeD3(e) {
+    d3.style.backgroundColor = "deepskyblue"
+    d3.style.transition = "0s"}
+function colorRevertD3(e) {
+    d3.style.backgroundColor = "#F5F5DC"
+    d3.style.transition = "0s"}
+function colorRevertE3(e) {
+    e3.style.backgroundColor = "#2E8B57"
+    e3.style.transition = "0s"}
+function colorChangeE3(e) {
+    e3.style.backgroundColor = "deepskyblue"
+    e3.style.transition = "0.25"}
+function colorChangeF3(e) {
+    f3.style.backgroundColor = "deepskyblue"
+    f3.style.transition = "0s"}
+function colorRevertF3(e) {
+    f3.style.backgroundColor = "#F5F5DC"
+    f3.style.transition = "0s"}    
+function colorRevertG3(e) {
+    g3.style.backgroundColor = "#2E8B57"
+    g3.style.transition = "0s"}
+function colorChangeG3(e) {
+    g3.style.backgroundColor = "deepskyblue"
+    g3.style.transition = "0.25"}
+function colorChangeH3(e) {
+    h3.style.backgroundColor = "deepskyblue"
+    h3.style.transition = "0s"}
+function colorRevertH3(e) {
+    h3.style.backgroundColor = "#F5F5DC"
+    h3.style.transition = "0s"}
+
+function colorChangeA2(e) {
+    a2.style.backgroundColor = "deepskyblue"
+    a2.style.transition = "0s"}
+function colorRevertA2(e) {
+    a2.style.backgroundColor = "#F5F5DC"
+    a2.style.transition = "0s"}
+function colorRevertB2(e) {
+    b2.style.backgroundColor = "#2E8B57"
+    b2.style.transition = "0s"}
+function colorChangeB2(e) {
+    b2.style.backgroundColor = "deepskyblue"
+    b2.style.transition = "0.25"}
+function colorChangeC2(e) {
+    c2.style.backgroundColor = "deepskyblue"
+    c2.style.transition = "0s"}
+function colorRevertC2(e) {
+    c2.style.backgroundColor = "#F5F5DC"
+    c2.style.transition = "0s"}
+function colorRevertD2(e) {
+    d2.style.backgroundColor = "#2E8B57"
+    d2.style.transition = "0s"}
+function colorChangeD2(e) {
+    d2.style.backgroundColor = "deepskyblue"
+    d2.style.transition = "0s"}
+function colorChangeE2(e) {
+    e2.style.backgroundColor = "deepskyblue"
+    e2.style.transition = "0s"}
+function colorRevertE2(e) {
+    e2.style.backgroundColor = "#F5F5DC"
+    e2.style.transition = "0s"}
+function colorRevertF2(e) {
+    f2.style.backgroundColor = "#2E8B57"
+    f2.style.transition = "0s"}
+function colorChangeF2(e) {
+    f2.style.backgroundColor = "deepskyblue"
+    f2.style.transition = "0s"}
+function colorChangeG2(e) {
+    g2.style.backgroundColor = "deepskyblue"
+    g2.style.transition = "0s"}
+function colorRevertG2(e) {
+    g2.style.backgroundColor = "#F5F5DC"
+    g2.style.transition = "0s"}
+function colorRevertH2(e) {
+    h2.style.backgroundColor = "#2E8B57"
+    h2.style.transition = "0s"}
+function colorChangeH2(e) {
+    h2.style.backgroundColor = "deepskyblue"
+    h2.style.transition = "0s"}
+
+function colorRevertA1(e) {
+    a1.style.backgroundColor = "#2E8B57"
+    a1.style.transition = "0s"}
+function colorChangeA1(e) {
+    a1.style.backgroundColor = "deepskyblue"
+    a1.style.transition = "0s"}
+function colorChangeB1(e) {
+    b1.style.backgroundColor = "deepskyblue"
+    b1.style.transition = "0s"}
+function colorRevertB1(e) {
+    b1.style.backgroundColor = "#F5F5DC"
+    b1.style.transition = "0s"}
+function colorRevertC1(e) {
+    c1.style.backgroundColor = "#2E8B57"
+    c1.style.transition = "0s"}
+function colorChangeC1(e) {
+    c1.style.backgroundColor = "deepskyblue"
+    c1.style.transition = "0.25"}
+function colorChangeD1(e) {
+    d1.style.backgroundColor = "deepskyblue"
+    d1.style.transition = "0s"}
+function colorRevertD1(e) {
+    d1.style.backgroundColor = "#F5F5DC"
+    d1.style.transition = "0s"}
+function colorRevertE1(e) {
+    e1.style.backgroundColor = "#2E8B57"
+    e1.style.transition = "0s"}
+function colorChangeE1(e) {
+    e1.style.backgroundColor = "deepskyblue"
+    e1.style.transition = "0.25"}
+function colorChangeF1(e) {
+    f1.style.backgroundColor = "deepskyblue"
+    f1.style.transition = "0s"}
+function colorRevertF1(e) {
+    f1.style.backgroundColor = "#F5F5DC"
+    f1.style.transition = "0s"}    
+function colorRevertG1(e) {
+    g1.style.backgroundColor = "#2E8B57"
+    g1.style.transition = "0s"}
+function colorChangeG1(e) {
+    g1.style.backgroundColor = "deepskyblue"
+    g1.style.transition = "0.25"}
+function colorChangeH1(e) {
+    h1.style.backgroundColor = "deepskyblue"
+    h1.style.transition = "0s"}
+function colorRevertH1(e) {
+    h1.style.backgroundColor = "#F5F5DC"
+    h1.style.transition = "0s"}
+
+</script>
+
+</body>
+
+</html>
