@@ -283,6 +283,7 @@ beep.volume = 0.1;
          	paused = true
          	box.innerHTML = "<img src = play.png draggable=\"false\" height=\"250px\">";
          	document.getElementById(textbox.innerHTML).pause();
+         	document.getElementById(textbox.innerHTML).currentTime = 0;
          	beep.play();
 
     }
