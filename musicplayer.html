@@ -72,12 +72,24 @@
   			margin-left:75px;
   		}
 
-  		#volumebutton:hover{
-			border:1px dashed black;
-			background-color:deepskyblue;
-		}
+		#volumebutton2 {
+			width:50px;
+			height:50px;
+			border-radius:50px;
+			border:1px solid black;
+			background-color:white;
+			opacity:50%;
+			position:fixed;
+			display: flex;
+  			justify-content: center;
+  			align-items: center;
+  			user-select:none;
+  			cursor:pointer;
+  			margin:10px;
+  			margin-left:140px;
+  		}
 
-		#editable{
+		#textbox{
 			height:50px;
 			width:200px;
 			border:1px solid black;
@@ -115,35 +127,49 @@
 <body>
 
 <div id="container">
-<div id="editable" contenteditable="true" spellcheck="false">guitar.mp3</div>
+<div id="textbox" contenteditable="true" spellcheck="false" onmousedown="pauseOnEdit()">song1</div>
 <div id="box" onmousedown="playMusic()"><img src = play.png draggable="false" height="250px"></div>
 </div>
 
 <div id="restartbutton" onmousedown="restartMusic()"><img src="restart.png" height="40px" draggable="false"></div>
 <div id="volumebutton" onmousedown="changeVolume()"><img src="volume.png" height="40px" draggable="false"></div>
+<div id="volumebutton2" onmousedown="changeVolume2()"><img src="volume2.png" height="40px" draggable="false"></div>
 
 <script type="text/javascript">
 
 document.addEventListener('mousedown', function() {
 	var currentMusic = (textbox.innerHTML);
 	console.log (currentMusic);
-})	
+})
+
+//Song 1, Song 2, Song 3, Song 4, Song 5	
 
 </script>
 
 <audio src=document.getElementById(currentMusic) id="currentMusic"></audio>
 
-<audio src="guitarsong.mp3" id="guitar"></audio>
+<audio src="guitarsong.mp3" id="song1"></audio>
+<audio src="song2.mp3" id="song2"></audio>
+<audio src="song3.mp3" id="song3"></audio>
+<audio src="song4.mp3" id="song4"></audio>
+<audio src="song5.mp3" id="song5"></audio>
 <audio src="beep.mp3" id="beep"></audio>
 
 <script type="text/javascript">
 	
 var paused = true;
 var musicvolume = true
+var musicvolume2 = true
 var box = document.getElementById("box");
-var music = document.getElementById("guitar");
+var song1 = document.getElementById("song1");
+var song2 = document.getElementById("song2");
+var song3 = document.getElementById("song3");
+var song4 = document.getElementById("song4");
+var song5 = document.getElementById("song5");
+var music = ["song1", "song2", "song3", "song4", "song5"];
 var beep = document.getElementById("beep");
-var textbox = document.getElementById("editable");
+var volume1 = document.getElementById("volumebutton");
+var volume2 = document.getElementById("volumebutton2");
 beep.volume = 0.1;
     
     function playMusic()
@@ -154,7 +180,7 @@ beep.volume = 0.1;
           box.style.backgroundColor = "green"; 
           paused = false;
           box.innerHTML = "<img src = pause.png draggable=\"false\" height=\"250px\">";
-          guitar.play();
+          document.getElementById(textbox.innerHTML).play();
           beep.play();
 		  beep.currentTime = 0
        }
@@ -164,7 +190,7 @@ beep.volume = 0.1;
          		box.style.backgroundColor = "red"; 
          		paused = true
          		box.innerHTML = "<img src = play.png draggable=\"false\" height=\"250px\">";
-         		guitar.pause();
+         		document.getElementById(textbox.innerHTML).pause();
          		beep.play();
 				beep.currentTime = 0
       		}    			
@@ -176,8 +202,8 @@ beep.volume = 0.1;
     	  box.style.backgroundColor = "green"; 
           paused = false;
           box.innerHTML = "<img src = pause.png draggable=\"false\" height=\"250px\">";
-          guitar.currentTime = 0;
-          guitar.play();
+          document.getElementById(textbox.innerHTML).currentTime = 0;
+          document.getElementById(textbox.innerHTML).play();
           beep.play();
           beep.currentTime = 0
     }
@@ -187,27 +213,73 @@ beep.volume = 0.1;
 
        if(musicvolume)
        {
+
           musicvolume = false;
-          guitar.volume = 0.5;
+          document.getElementById(textbox.innerHTML).volume = 0.5;
           beep.play();
           beep.currentTime = 0
+          volume1.style.backgroundColor="deepskyblue";
+          musicvolume2 = true;
+          volume2.style.backgroundColor="white"
+
        }
 
      		else
       		{
          		musicvolume = true;
-         		guitar.volume = 1;
+         		document.getElementById(textbox.innerHTML).volume = 1;
          		beep.play();
          		beep.currentTime = 0
+         		volume1.style.backgroundColor="white";
+         		musicvolume2 = true;
+         		volume2.style.backgroundColor="white"
+      		}    			
+
+    }
+
+        function changeVolume2()
+    {
+
+       if(musicvolume2)
+       {
+
+          musicvolume2 = false;
+          document.getElementById(textbox.innerHTML).volume = 0.25;
+          beep.play();
+          beep.currentTime = 0
+          volume1.style.backgroundColor="white";
+          musicvolume=true;
+          volume2.style.backgroundColor="deepskyblue"
+
+       }
+
+     		else
+      		{
+         		musicvolume2 = true;
+         		document.getElementById(textbox.innerHTML).volume = 1;
+         		beep.play();
+         		beep.currentTime = 0
+         		volume1.style.backgroundColor="white";
+         		musicvolume=true;
+         		volume2.style.backgroundColor="white"
       		}    			
 
     }
 
     music.onended = function(){
-    	guitar.play();
+    	document.getElementById(textbox.innerHTML).play();
     }
 
-//Maybe use drop-down menu??
+
+    function pauseOnEdit()
+    {
+			box.style.backgroundColor = "red"; 
+         	paused = true
+         	box.innerHTML = "<img src = play.png draggable=\"false\" height=\"250px\">";
+         	document.getElementById(textbox.innerHTML).pause();
+         	beep.play();
+
+    }
 
 </script>
 
