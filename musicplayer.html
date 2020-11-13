@@ -152,7 +152,7 @@ beep.volume = 0.1;
        {
           box.style.backgroundColor = "green"; 
           paused = false;
-          box.innerHTML = "<img src = play.png draggable=\"false\" height=\"250px\">";
+          box.innerHTML = "<img src = pause.png draggable=\"false\" height=\"250px\">";
           guitar.play();
           beep.play();
 		  beep.currentTime = 0
@@ -162,7 +162,7 @@ beep.volume = 0.1;
       		{
          		box.style.backgroundColor = "red"; 
          		paused = true
-         		box.innerHTML = "<img src = pause.png draggable=\"false\" height=\"250px\">";
+         		box.innerHTML = "<img src = play.png draggable=\"false\" height=\"250px\">";
          		guitar.pause();
          		beep.play();
 				beep.currentTime = 0
@@ -174,7 +174,7 @@ beep.volume = 0.1;
     {
     	  box.style.backgroundColor = "green"; 
           paused = false;
-          box.innerHTML = "<img src = play.png draggable=\"false\" height=\"250px\">";
+          box.innerHTML = "<img src = pause.png draggable=\"false\" height=\"250px\">";
           guitar.currentTime = 0;
           guitar.play();
           beep.play();
