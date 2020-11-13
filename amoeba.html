@@ -122,6 +122,7 @@ var boxes = [].slice.call(document.getElementsByClassName("box"));
 var scribble = document.getElementById("scribble");
 scribble.volume= 0.25;
 var eraser = document.getElementById("eraser");
+var toggle = true
 
 function buttonPress(){
 	document.location.reload(true)
@@ -131,24 +132,63 @@ function buttonPress2(){
 	pageturn.play();
 }
 
-	boxes.forEach(function (element, index){
-  		element.addEventListener("mousedown",
-			function boxPlace() {
-				if (event.shiftKey) {element.innerHTML = "<img src = x.png draggable=\"false\">";
-					scribble.currentTime = 0
-					scribble.volume= 0.25;
-    				scribble.play();}
-				else{element.innerHTML = "<img src = o.png draggable=\"false\">";
-					scribble.currentTime = 0
-					scribble.volume= 0.25;
-    				scribble.play();}
+//Shift method below
 
-    			 if (event.getModifierState("CapsLock")) {element.innerHTML = "";
-					eraser.currentTime = 0
-					scribble.volume=0;
-    				eraser.play();}
-    			})
-  	});
+//	boxes.forEach(function (element, index){
+//  		element.addEventListener("mousedown",
+//			function boxPlace() {
+//				if (event.shiftKey) {element.innerHTML = "<img src = x.png draggable=\"false\">";
+//					scribble.currentTime = 0
+//					scribble.volume= 0.25;
+//   				scribble.play();}
+//				else{element.innerHTML = "<img src = o.png draggable=\"false\">";
+//					scribble.currentTime = 0
+//					scribble.volume= 0.25;
+//    				scribble.play();}
+//
+//    			 if (event.getModifierState("CapsLock")) {element.innerHTML = "";
+//					eraser.currentTime = 0
+//					scribble.volume=0;
+//    				eraser.play();}
+//    			})
+//  	});
+
+//Alternating method below
+
+  		boxes.forEach(function (element, index){
+  		element.addEventListener("mousedown",
+			function boxPlace() 
+			{
+				if (toggle) 
+				{
+					element.innerHTML = "<img src = x.png draggable=\"false\">";
+					scribble.currentTime = 0
+					scribble.volume= 0.25;
+					toggle=false;
+    				scribble.play();
+    			}
+
+				else
+				{
+					element.innerHTML = "<img src = o.png draggable=\"false\">";
+					scribble.currentTime = 0
+					scribble.volume= 0.25;
+					toggle=true;
+    				scribble.play();
+    			}
+
+    			if (event.getModifierState("CapsLock")) 
+    			{
+    					element.innerHTML = "";
+						eraser.currentTime = 0
+						scribble.volume=0;
+    					eraser.play();
+				}
+				
+
+    		})
+    	})   			
+
 
 </script>
 </html>
