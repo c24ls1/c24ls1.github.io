@@ -186,6 +186,8 @@ beep.volume = 0.1;
           beep.play();
 		  beep.currentTime = 0
 		  firstMusic();
+		  loop=false;
+		  loopMusic();
        }
 
      		else
@@ -354,8 +356,6 @@ beep.volume = 0.1;
 
     function firstMusic()
     	{
-         		loopbutton.style.backgroundColor="white"
-
          		song1.onended = function(){
     			document.getElementById(textbox.innerHTML="song2");
     			song2.play();
