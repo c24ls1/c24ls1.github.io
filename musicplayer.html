@@ -84,6 +84,23 @@
   			margin-left:140px;
   		}
 
+  		#loopbutton {
+			width:50px;
+			height:50px;
+			border-radius:50px;
+			border:1px solid black;
+			background-color:white;
+			opacity:50%;
+			position:fixed;
+			display: flex;
+  			justify-content: center;
+  			align-items: center;
+  			user-select:none;
+  			cursor:pointer;
+  			margin:10px;
+  			margin-left:205px;
+  		}
+
 		#textbox{
 			height:50px;
 			width:200px;
@@ -129,39 +146,32 @@
 <div id="restartbutton" onmousedown="restartMusic()"><img src="restart.png" height="40px" draggable="false"></div>
 <div id="volumebutton" onmousedown="changeVolume()"><img src="volume.png" height="40px" draggable="false"></div>
 <div id="volumebutton2" onmousedown="changeVolume2()"><img src="volume2.png" height="40px" draggable="false"></div>
+<div id="loopbutton" onmousedown="loopMusic()"><img src="repeat.png" height="40px" draggable="false"></div>
 
-<script type="text/javascript">
-
-document.addEventListener('mousedown', function() {
-	var currentMusic = (textbox.innerHTML);
-	console.log (currentMusic);
-})	
-
-</script>
-
-<audio src=document.getElementById(currentMusic) id="currentMusic"></audio>
-
-<audio src="guitarsong.mp3" id="song1"></audio>
-<audio src="song2.mp3" id="song2"></audio>
-<audio src="song3.mp3" id="song3"></audio>
-<audio src="song4.mp3" id="song4"></audio>
-<audio src="song5.mp3" id="song5"></audio>
+<audio src="AboveAll.mp3" id="song1"></audio>
+<audio src="Pyxis.mp3" id="song2"></audio>
+<audio src="ComeBackDown.mp3" id="song3"></audio>
+<audio src="Decay.mp3" id="song4"></audio>
+<audio src="HeadFirst.mp3" id="song5"></audio>
 <audio src="beep.mp3" id="beep"></audio>
 
 <script type="text/javascript">
 	
 var paused = true;
-var musicvolume = true
-var musicvolume2 = true
+var musicvolume = true;
+var musicvolume2 = true;
+var loop = true;
 var box = document.getElementById("box");
 var song1 = document.getElementById("song1");
 var song2 = document.getElementById("song2");
 var song3 = document.getElementById("song3");
 var song4 = document.getElementById("song4");
 var song5 = document.getElementById("song5");
+var song6 = document.getElementById("song6");
 var beep = document.getElementById("beep");
 var volume1 = document.getElementById("volumebutton");
 var volume2 = document.getElementById("volumebutton2");
+var loopbutton = document.getElementById("loopbutton");
 beep.volume = 0.1;
     
     function playMusic()
@@ -175,6 +185,7 @@ beep.volume = 0.1;
           document.getElementById(textbox.innerHTML).play();
           beep.play();
 		  beep.currentTime = 0
+		  firstMusic();
        }
 
      		else
@@ -207,7 +218,11 @@ beep.volume = 0.1;
        {
 
           musicvolume = false;
-          document.getElementById(textbox.innerHTML).volume = 0.5;
+          song1.volume = 0.5;
+          song2.volume = 0.5;
+          song3.volume = 0.5;
+          song4.volume = 0.5;
+          song5.volume = 0.5;
           beep.play();
           beep.currentTime = 0
           volume1.style.backgroundColor="deepskyblue";
@@ -219,7 +234,11 @@ beep.volume = 0.1;
      		else
       		{
          		musicvolume = true;
-         		document.getElementById(textbox.innerHTML).volume = 1;
+         		song1.volume = 1;
+          		song2.volume = 1;
+          		song3.volume = 1;
+          		song4.volume = 1;
+          		song5.volume = 1;
          		beep.play();
          		beep.currentTime = 0
          		volume1.style.backgroundColor="white";
@@ -236,7 +255,11 @@ beep.volume = 0.1;
        {
 
           musicvolume2 = false;
-          document.getElementById(textbox.innerHTML).volume = 0.25;
+          song1.volume = 0.25;
+          song2.volume = 0.25;
+          song3.volume = 0.25;
+          song4.volume = 0.25;
+          song5.volume = 0.25;
           beep.play();
           beep.currentTime = 0
           volume1.style.backgroundColor="white";
@@ -248,7 +271,11 @@ beep.volume = 0.1;
      		else
       		{
          		musicvolume2 = true;
-         		document.getElementById(textbox.innerHTML).volume = 1;
+         		song1.volume = 1;
+          		song2.volume = 1;
+          		song3.volume = 1;
+          		song4.volume = 1;
+          		song5.volume = 1;
          		beep.play();
          		beep.currentTime = 0
          		volume1.style.backgroundColor="white";
@@ -258,22 +285,61 @@ beep.volume = 0.1;
 
     }
 
-    song1.onended = function(){
-    	document.getElementById(textbox.innerHTML).play();
-    }
-    song2.onended = function(){
-    	document.getElementById(textbox.innerHTML).play();
-    }
-    song3.onended = function(){
-    	document.getElementById(textbox.innerHTML).play();
-    }
-    song4.onended = function(){
-    	document.getElementById(textbox.innerHTML).play();
-    }
-    song5.onended = function(){
-    	document.getElementById(textbox.innerHTML).play();
-    }
 
+        function loopMusic()
+    {
+
+       if(loop)
+       {
+
+          loop = false;
+          beep.play();
+          beep.currentTime = 0
+          loopbutton.style.backgroundColor="deepskyblue"
+
+            song1.onended = function(){
+    		document.getElementById(textbox.innerHTML).play();}
+    		song2.onended = function(){
+    		document.getElementById(textbox.innerHTML).play();}
+    		song3.onended = function(){
+    		document.getElementById(textbox.innerHTML).play();}
+   			song4.onended = function(){
+    		document.getElementById(textbox.innerHTML).play();}
+    		song5.onended = function(){
+    		document.getElementById(textbox.innerHTML).play();}
+
+       }
+
+     		else
+      	{
+            	loop = true;
+         		beep.play();
+         		beep.currentTime = 0
+         		loopbutton.style.backgroundColor="white"
+
+         		song1.onended = function(){
+    			document.getElementById(textbox.innerHTML="song2");
+    			song2.play();
+    		}
+    			song2.onended = function(){
+    			document.getElementById(textbox.innerHTML="song3");
+    			song3.play();
+    		}
+    			song3.onended = function(){
+    			document.getElementById(textbox.innerHTML="song4");
+    			song4.play();
+    		}
+   				song4.onended = function(){
+    			document.getElementById(textbox.innerHTML="song5");
+    			song5.play();
+    		}
+    			song5.onended = function(){
+    			document.getElementById(textbox.innerHTML="song1");
+    			song1.play();
+    		}
+      	}    			
+
+    }
 
     function pauseOnEdit()
     {
@@ -285,6 +351,32 @@ beep.volume = 0.1;
          	beep.play();
 
     }
+
+    function firstMusic()
+    	{
+         		loopbutton.style.backgroundColor="white"
+
+         		song1.onended = function(){
+    			document.getElementById(textbox.innerHTML="song2");
+    			song2.play();
+    		}
+    			song2.onended = function(){
+    			document.getElementById(textbox.innerHTML="song3");
+    			song3.play();
+    		}
+    			song3.onended = function(){
+    			document.getElementById(textbox.innerHTML="song4");
+    			song4.play();
+    		}
+   				song4.onended = function(){
+    			document.getElementById(textbox.innerHTML="song5");
+    			song5.play();
+    		}
+    			song5.onended = function(){
+    			document.getElementById(textbox.innerHTML="song6");
+    			song1.play();
+    		}
+    	}
 
 </script>
 
