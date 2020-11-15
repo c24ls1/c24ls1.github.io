@@ -160,7 +160,7 @@
 var paused = true;
 var musicvolume = true;
 var musicvolume2 = true;
-var loop = false;
+var loop = true;
 var box = document.getElementById("box");
 var song1 = document.getElementById("song1");
 var song2 = document.getElementById("song2");
@@ -186,7 +186,7 @@ beep.volume = 0.1;
           beep.play();
 		      beep.currentTime = 0
 		      firstMusic();
-		      loopMusic();
+		     
        }
 
      		else
@@ -197,12 +197,13 @@ beep.volume = 0.1;
          		document.getElementById(textbox.innerHTML).pause();
          		beep.play();
 				    beep.currentTime = 0
-            loopMusic();
+            
             if(loop){
-              loopbutton.style.backgroundColor="deepskyblue";
+              loopbutton.style.backgroundColor="white";
             }  	
             else{
-              loopbutton.style.backgroundColor="white";
+              loopbutton.style.backgroundColor="deepskyblue";
+
             }		
         }
 
@@ -379,7 +380,7 @@ beep.volume = 0.1;
     			song5.play();
     		}
     			song5.onended = function(){
-    			document.getElementById(textbox.innerHTML="song6");
+    			document.getElementById(textbox.innerHTML="song1");
     			song1.play();
     		}
     	}
