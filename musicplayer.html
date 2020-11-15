@@ -184,9 +184,10 @@ beep.volume = 0.1;
           box.innerHTML = "<img src = pause.png draggable=\"false\" height=\"250px\">";
           document.getElementById(textbox.innerHTML).play();
           beep.play();
-		      beep.currentTime = 0
-		      firstMusic();
-		     
+		  beep.currentTime = 0
+		  firstMusic();
+		  loop=false;
+		  loopMusic();
        }
 
      		else
@@ -196,16 +197,8 @@ beep.volume = 0.1;
          		box.innerHTML = "<img src = play.png draggable=\"false\" height=\"250px\">";
          		document.getElementById(textbox.innerHTML).pause();
          		beep.play();
-				    beep.currentTime = 0
-            
-            if(loop){
-              loopbutton.style.backgroundColor="white";
-            }  	
-            else{
-              loopbutton.style.backgroundColor="deepskyblue";
-
-            }		
-        }
+				beep.currentTime = 0
+      		}    			
 
     }
 
@@ -306,7 +299,7 @@ beep.volume = 0.1;
           beep.currentTime = 0
           loopbutton.style.backgroundColor="deepskyblue"
 
-        song1.onended = function(){
+            song1.onended = function(){
     		document.getElementById(textbox.innerHTML).play();}
     		song2.onended = function(){
     		document.getElementById(textbox.innerHTML).play();}
@@ -321,12 +314,12 @@ beep.volume = 0.1;
 
      		else
       	{
-            loop = true;
+            	loop = true;
          		beep.play();
          		beep.currentTime = 0
          		loopbutton.style.backgroundColor="white"
 
-         	song1.onended = function(){
+         		song1.onended = function(){
     			document.getElementById(textbox.innerHTML="song2");
     			song2.play();
     		}
@@ -363,7 +356,7 @@ beep.volume = 0.1;
 
     function firstMusic()
     	{
-         	song1.onended = function(){
+         		song1.onended = function(){
     			document.getElementById(textbox.innerHTML="song2");
     			song2.play();
     		}
