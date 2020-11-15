@@ -33,10 +33,9 @@
   		user-select:none;
   		cursor:pointer;}
 
-	.button:hover{
-		border:1px dashed black;
-		background-color:deepskyblue;
-		box-shadow:0 0 100px rgba(0,0,0,0.2) inset,0 0px rgba(212,152,125,0.2) inset,0 0px 0px rgba(0,0,0,0.2);}
+  	.button:hover{
+  		background-color:deepskyblue;
+  	}
 
 	.toggledraw{
 		border-radius:15px;
@@ -49,12 +48,8 @@
 		align-items:center;
 		border:1px solid black;
 		user-select:none;
-		cursor:pointer;}
-
-	.toggledraw:hover{
-		border:1px dashed black;
 		background-color:deepskyblue;
-		box-shadow:0 0 100px rgba(0,0,0,0.2) inset,0 0px rgba(212,152,125,0.2) inset,0 0px 0px rgba(0,0,0,0.2);}
+		cursor:pointer;}
 
 	.toggleerase{
 		border-radius:15px;
@@ -70,11 +65,6 @@
 		user-select:none;
 		cursor:pointer;}
 
-	.toggleerase:hover{
-		border:1px dashed black;
-		background-color:deepskyblue;
-		box-shadow:0 0 100px rgba(0,0,0,0.2) inset,0 0px rgba(212,152,125,0.2) inset,0 0px 0px rgba(0,0,0,0.2);}
-
 	.togglecolorRed{
 		border-radius:15px;
 		width:50px;
@@ -86,11 +76,6 @@
 		align-items:center;
 		border:1px solid black;
 		cursor:pointer;}
-
-	.togglecolorRed:hover{
-		border:1px dashed black;
-		background-color:deepskyblue;
-		box-shadow:0 0 100px rgba(0,0,0,0.2) inset,0 0px rgba(212,152,125,0.2) inset,0 0px 0px rgba(0,0,0,0.2);}
 
 	.togglecolorOrange{
 		border-radius:15px;
@@ -105,11 +90,6 @@
 		border:1px solid black;
 		cursor:pointer;}
 
-	.togglecolorOrange:hover{
-		border:1px dashed black;
-		background-color:deepskyblue;
-		box-shadow:0 0 100px rgba(0,0,0,0.2) inset,0 0px rgba(212,152,125,0.2) inset,0 0px 0px rgba(0,0,0,0.2);}
-
 	.togglecolorYellow{
 		border-radius:15px;
 		width:50px;
@@ -122,11 +102,6 @@
 		margin-top:150px;
 		border:1px solid black;
 		cursor:pointer;}
-
-	.togglecolorYellow:hover{
-		border:1px dashed black;
-		background-color:deepskyblue;
-		box-shadow:0 0 100px rgba(0,0,0,0.2) inset,0 0px rgba(212,152,125,0.2) inset,0 0px 0px rgba(0,0,0,0.2);}
 
 	.togglecolorGreen{
 		border-radius:15px;
@@ -141,11 +116,6 @@
 		border:1px solid black;
 		cursor:pointer;}
 
-	.togglecolorGreen:hover{
-		border:1px dashed black;
-		background-color:deepskyblue;
-		box-shadow:0 0 100px rgba(0,0,0,0.2) inset,0 0px rgba(212,152,125,0.2) inset,0 0px 0px rgba(0,0,0,0.2);}
-
 	.togglecolorBlue{
 		border-radius:15px;
 		width:50px;
@@ -159,11 +129,6 @@
 		border:1px solid black;
 		cursor:pointer;}
 
-	.togglecolorBlue:hover{
-		border:1px dashed black;
-		background-color:deepskyblue;
-		box-shadow:0 0 100px rgba(0,0,0,0.2) inset,0 0px rgba(212,152,125,0.2) inset,0 0px 0px rgba(0,0,0,0.2);}
-
 	.togglecolorPurple{
 		border-radius:15px;
 		width:50px;
@@ -176,11 +141,6 @@
 		margin-top:375px;
 		border:1px solid black;
 		cursor:pointer;}
-
-	.togglecolorPurple:hover{
-		border:1px dashed black;
-		background-color:deepskyblue;
-		box-shadow:0 0 100px rgba(0,0,0,0.2) inset,0 0px rgba(212,152,125,0.2) inset,0 0px 0px rgba(0,0,0,0.2);}
 
 	.icons{
 		width:40px;
@@ -207,14 +167,21 @@
 <div class="button" onclick="reloadPageAudio()" onmouseup="setTimeout(reloadPage, 800)">
 <img src="restart.png" height="25px" draggable="false"></div>
 
-<div class="toggledraw" onmousedown="scribblePlay()"><div class="icons"><img src="pencilicon.png" height="40px" draggable="false"></div></div>
-<div class="toggleerase" onmousedown="eraserPlay()"><div class="icons"><img src="erasericon.png" height="40px" draggable="false"></div></div>
-<div class="togglecolorRed" onmousedown="paintDrip()"><div class="icons"><img src="redicon.png" height="40px" draggable="false"></div></div>
-<div class="togglecolorOrange" onmousedown="paintDrip()"><div class="icons"><img src="orangeicon.png" height="40px" draggable="false"></div></div>
-<div class="togglecolorYellow" onmousedown="paintDrip()"><div class="icons"><img src="yellowicon.png" height="40px" draggable="false"></div></div>
-<div class="togglecolorGreen" onmousedown="paintDrip()"><div class="icons"><img src="greenicon.png" height="40px" draggable="false"></div></div>
-<div class="togglecolorBlue" onmousedown="paintDrip()"><div class="icons"><img src="blueicon.png" height="40px" draggable="false"></div></div>
-<div class="togglecolorPurple" onmousedown="paintDrip()"><div class="icons"><img src="purpleicon.png" height="40px" draggable="false"></div></div>
+<div class="toggledraw" id="toggledraw" onmousedown="scribblePlay()"><div class="icons"><img src="pencilicon.png" height="40px" draggable="false"></div></div>
+
+<div class="toggleerase" id="toggleerase" onmousedown="eraserPlay()"><div class="icons"><img src="erasericon.png" height="40px" draggable="false"></div></div>
+
+<div class="togglecolorRed" id="togglered" onmousedown="paintDripRed()"><div class="icons"><img src="redicon.png" height="40px" draggable="false"></div></div>
+
+<div class="togglecolorOrange" id="toggleorange" onmousedown="paintDripOrange()"><div class="icons"><img src="orangeicon.png" height="40px" draggable="false"></div></div>
+
+<div class="togglecolorYellow" id="toggleyellow" onmousedown="paintDripYellow()"><div class="icons"><img src="yellowicon.png" height="40px" draggable="false"></div></div>
+
+<div class="togglecolorGreen" id="togglegreen" onmousedown="paintDripGreen()"><div class="icons"><img src="greenicon.png" height="40px" draggable="false"></div></div>
+
+<div class="togglecolorBlue" id="toggleblue" onmousedown="paintDripBlue()"><div class="icons"><img src="blueicon.png" height="40px" draggable="false"></div></div>
+
+<div class="togglecolorPurple" id="togglepurple" onmousedown="paintDripPurple()"><div class="icons"><img src="purpleicon.png" height="40px" draggable="false"></div></div>
 
 </div>
 
@@ -230,6 +197,24 @@ canvasrip.volume= 0.50;
 paintdrip.volume= 0.50;
 eraser.volume= 1;
 
+var red = true;
+var orange = true;
+var yellow = true;
+var green = true;
+var blue = true;
+var purple = true;
+var scribbles = true;
+var erasers = true;
+
+var togglered = document.getElementById("togglered");
+var toggleorange = document.getElementById("toggleorange");
+var toggleyellow = document.getElementById("toggleyellow");
+var togglegreen = document.getElementById("togglegreen");
+var toggleblue = document.getElementById("toggleblue");
+var togglepurple = document.getElementById("togglepurple");
+var toggledraw = document.getElementById("toggledraw");
+var toggleerase = document.getElementById("toggleerase");
+
 function reloadPage(){
 	document.location.reload(true)
 }
@@ -238,19 +223,216 @@ function reloadPageAudio(){
 	canvasrip.play();
 }
 
-function paintDrip(){
+function paintDripRed(){
 	paintdrip.play();
 	paintdrip.currentTime = 0
+
+	if(red)
+       {   
+          red = false;
+          orange = false;
+          yellow = false;
+          green = false;
+          blue = false;
+          purple = false;
+          paintDripOrange();
+          paintDripYellow();
+          paintDripGreen();
+          paintDripBlue();
+          paintDripPurple();
+          togglered.style.backgroundColor="deepskyblue";
+       }
+
+     		else
+      		{
+         		red = true
+         		togglered.style.backgroundColor="white";
+      		} 
 }
 
+function paintDripOrange(){
+	paintdrip.play();
+	paintdrip.currentTime = 0
+
+	if(orange)
+       {   
+          orange = false;
+          red = false;
+          yellow = false;
+          green = false;
+          blue = false;
+          purple = false;
+          erasers = false;
+          paintDripRed();
+          paintDripYellow();
+          paintDripGreen();
+          paintDripBlue();
+          paintDripPurple();
+          toggleorange.style.backgroundColor="deepskyblue";
+       }
+
+     		else
+      		{
+         		orange = true;
+         		toggleorange.style.backgroundColor="white";
+      		} 
+}
+
+function paintDripYellow(){
+	paintdrip.play();
+	paintdrip.currentTime = 0
+
+	if(yellow)
+       {   
+          yellow = false;
+          orange = false;
+          red = false;
+          green = false;
+          blue = false;
+          purple = false;
+          paintDripRed();
+          paintDripOrange();
+          paintDripGreen();
+          paintDripBlue();
+          paintDripPurple();
+          toggleyellow.style.backgroundColor="deepskyblue";
+       }
+
+     		else
+      		{
+         		yellow = true;
+         		toggleyellow.style.backgroundColor="white";
+      		} 
+}
+
+function paintDripGreen(){
+	paintdrip.play();
+	paintdrip.currentTime = 0
+
+	if(green)
+       {   
+          yellow = false;
+          orange = false;
+          red = false;
+          green = false;
+          blue = false;
+          purple = false;
+          paintDripRed();
+          paintDripOrange();
+          paintDripYellow();
+          paintDripBlue();
+          paintDripPurple();
+          togglegreen.style.backgroundColor="deepskyblue";
+       }
+
+     		else
+      		{
+         		green = true;
+         		togglegreen.style.backgroundColor="white";
+      		} 
+}
+
+function paintDripBlue(){
+	paintdrip.play();
+	paintdrip.currentTime = 0
+
+	if(blue)
+       {   
+          yellow = false;
+          orange = false;
+          red = false;
+          green = false;
+          blue = false;
+          purple = false;
+          paintDripRed();
+          paintDripOrange();
+          paintDripYellow();
+          paintDripGreen();
+          paintDripPurple();
+          toggleblue.style.backgroundColor="deepskyblue";
+       }
+
+     		else
+      		{
+         		blue = true;
+         		toggleblue.style.backgroundColor="white";
+      		} 
+}
+
+function paintDripPurple(){
+	paintdrip.play();
+	paintdrip.currentTime = 0
+
+	if(purple)
+       {   
+          yellow = false;
+          orange = false;
+          red = false;
+          green = false;
+          blue = false;
+          purple = false;
+          paintDripRed();
+          paintDripOrange();
+          paintDripYellow();
+          paintDripGreen();
+          paintDripBlue();
+          togglepurple.style.backgroundColor="deepskyblue";
+       }
+
+     		else
+      		{
+         		purple = true;
+         		togglepurple.style.backgroundColor="white";
+      		} 
+}
+
+
 function scribblePlay(){
-	scribble.play();
-	scribble.currentTime = 0
+
+	if(scribbles)
+       {   
+       	  scribbles = false;
+          toggledraw.style.backgroundColor="white";
+          eraser.pause();
+          eraser.volume=1;
+          scribble.play();
+		  scribble.currentTime = 0
+       }
+
+     		else
+      		{
+         		scribbles = true;
+         		erasers = false;
+         		eraser.volume=0;
+       	 	    eraserPlay();
+         		toggledraw.style.backgroundColor="deepskyblue";
+         		scribble.play();
+				scribble.currentTime = 0
+      		} 	
 }
 
 function eraserPlay(){
-	eraser.play();
-	eraser.currentTime = 0
+
+	if(erasers)
+       {   
+       	  erasers = false;
+       	  scribbles = true; 
+       	  scribble.volume = 0; 
+       	  scribblePlay();
+          toggleerase.style.backgroundColor="deepskyblue";
+          eraser.play();
+		  eraser.currentTime = 0
+       }
+
+     		else
+      		{
+         		erasers = true;
+         		toggleerase.style.backgroundColor="white";
+         		scribble.volume = 0.25;
+         		scribble.pause();
+         		eraser.play();
+				eraser.currentTime = 0
+      		} 	
 }
 
 </script>
